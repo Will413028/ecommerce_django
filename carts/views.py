@@ -39,13 +39,16 @@ def add_cart(request, product_id):
 
 
 def cart(request, total=0, quantity=0, cart_items=None):
+    tax_rate = 2
+
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart, is_active=True)
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
-
+        tax = (tax_rate * total)/100
+        order_total = total + tax
 
     except ObjectDoesNotExist:
         pass  # just ignore
@@ -53,6 +56,8 @@ def cart(request, total=0, quantity=0, cart_items=None):
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
+        'tax': tax,
+        'order_total': order_total,
     }
 
     return render(request, 'store/cart.html', context)
