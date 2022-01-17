@@ -23,7 +23,8 @@ def add_cart(request, product_id):
             value = request.POST[key]
 
             try:
-                variation = Variation.objects.get(product=product, variation_category__iexact=key, variation_value__iexact=value)
+                variation = Variation.objects.get(product=product, variation_category__iexact=key,
+                                                  variation_value__iexact=value)
                 product_variation.append(variation)
             except:
                 pass
@@ -120,5 +121,8 @@ def cart(request, total=0, quantity=0, cart_items=None):
         'tax': tax,
         'order_total': order_total,
     }
-
     return render(request, 'store/cart.html', context)
+
+
+def checkout(request):
+    return render(request, 'store/checkout.html')
