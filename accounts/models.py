@@ -59,7 +59,10 @@ class Account(AbstractBaseUser):
 
     objects = MyAccountManager()
 
-    def _str_(self):
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
+    def __str__(self):
         return self.email
 
     def has_perm(self, perm, obj=None):
