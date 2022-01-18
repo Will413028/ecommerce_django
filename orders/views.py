@@ -22,6 +22,13 @@ def payments(request):
     order.is_ordered = True
     order.save()
 
+
+    # Move the cart item to Order Product table
+    # Reduce the quantity of the sold product
+    # Clear cart
+    # Send order received email to customer
+    # Send order number and transaction id back to sendData method via
+
     return render(request, 'orders/payments.html')
 
 
