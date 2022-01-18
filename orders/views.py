@@ -22,8 +22,21 @@ def payments(request):
     order.is_ordered = True
     order.save()
 
-
     # Move the cart item to Order Product table
+    cart_items = CartItem.objects.filter(user=request.user)
+
+    for item in cart_items:
+        orderproduct = OrderProduct()
+        orderproduct.order_id = order.id
+        orderproduct.payment = payment
+        orderproduct.user_id = request.user.id
+        orderproduct.product_id = item.product_id
+        orderproduct.quantity = item.quantity
+        orderproduct.product_price = item.product.price
+        orderproduct.ordered = True
+        orderproduct.save()
+
+
     # Reduce the quantity of the sold product
     # Clear cart
     # Send order received email to customer
