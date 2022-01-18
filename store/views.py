@@ -80,7 +80,7 @@ def submit_review(request, product_id):
     if request.method == 'POST':
         try:
             reviews = ReviewRating.objects.get(user__id=request.user.id, product__id=product_id)
-            form = ReviewForm(request.POST, instance=reviews)    # if there is no instance will create new rating. One item may have two rating
+            form = ReviewForm(request.POST, instance=reviews)    # instance can prevent one item may have two ratings
             form.save()
             messages.success(request, 'Thank you! Your review has been updated.')
             return redirect(url)

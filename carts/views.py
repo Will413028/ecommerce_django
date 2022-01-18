@@ -4,9 +4,6 @@ from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-from django.http import HttpResponse
-
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -17,8 +14,7 @@ def _cart_id(request):
 
 def add_cart(request, product_id):
     current_user = request.user
-    product = Product.objects.get(id=product_id)  # get the product
-    # If the user is authenticated
+    product = Product.objects.get(id=product_id)
     if current_user.is_authenticated:
         product_variation = []
         if request.method == 'POST':
@@ -174,7 +170,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
         order_total = total + tax
 
     except ObjectDoesNotExist:
-        pass  # just ignore
+        pass
     context = {
         'total': total,
         'quantity': quantity,
@@ -203,7 +199,7 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         order_total = total + tax
 
     except ObjectDoesNotExist:
-        pass  # just ignore
+        pass
     context = {
         'total': total,
         'quantity': quantity,
