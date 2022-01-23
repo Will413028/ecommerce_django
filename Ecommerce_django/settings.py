@@ -29,7 +29,8 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = ['127.0.0.1', 'eshopping-env.eba-fr76zpus.us-west-2.elasticbeanstalk.com', ]
 
 # Application definition
-
+import sys
+sys.modules['fontawesome_free'] = __import__('fontawesome-free')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'carts',
     'orders',
     'admin_honeypot',
-    'storages'
+    'storages',
+    'fontawesome_free'
 ]
 
 MIDDLEWARE = [
