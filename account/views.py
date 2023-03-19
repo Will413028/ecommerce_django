@@ -1,5 +1,4 @@
-from django.shortcuts import redirect,render
-
+from django.shortcuts import redirect, render
 from .forms import CreateUserForm
 
 
@@ -24,4 +23,3 @@ def register(request):
     context = {'form': form}
 
     return render(request, 'account/registration/register.html', context=context)
-

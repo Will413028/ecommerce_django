@@ -1,4 +1,3 @@
-
 {% include "store/base.html" %}
 
 {% load static %}
@@ -8,96 +7,80 @@
 
 {% block content %}
 
-    <style>
+<style>
+    body {
 
 
-        body{
+        background-color: gray;
 
-
-            background-color: gray;
-
-        }
-
-
-
-    </style>
+    }
+</style>
 
 
 
 
-    <body>
+<body>
 
+    <br>
+
+    <div class="container bg-white shadow-md p-5 form-layout">
+
+        <h3> Create your account </h3>
+
+        <h5> Purchase your favourite items today! </h5>
+
+        <hr>
         <br>
 
-        <div class="container bg-white shadow-md p-5 form-layout">
+        <form method="POST" autocomplete="off">
 
-            <h3> Create your account </h3>
+            {% csrf_token %}
 
-            <h5> Purchase your favourite items today! </h5>
+            {{form.username|as_crispy_field}}
 
-            <hr>
-            <br>
-
-            <form method="POST" autocomplete="off">
-
-                {% csrf_token %}
-
-                {{form.username|as_crispy_field}}
-
-                <br> <br>
+            <br> <br>
 
 
-                {{form.email|as_crispy_field}}
+            {{form.email|as_crispy_field}}
 
-                <br> <br>
-
-
-                {{form.password1|as_crispy_field}}
-
-                <br> <br>
+            <br> <br>
 
 
-                {{form.password2|as_crispy_field}}
+            {{form.password1|as_crispy_field}}
+
+            <br> <br>
 
 
-                <br> <br>
-                
-                <button type="submit" class="btn btn-primary navbar-btn text-white w-100 p-2"> &nbsp; Create account </button>
-
-                <br> <br>
-
-                <div class="text-center">
-
-                    <a href="{% url 'my-login' %}"> Already have an account? </a>
-
-                </div>
+            {{form.password2|as_crispy_field}}
 
 
-            </form>
+            <br> <br>
+
+            <button type="submit" class="btn btn-primary navbar-btn text-white w-100 p-2"> &nbsp; Create account
+            </button>
+
+            <br> <br>
+
+            <div class="text-center">
+
+                <a href=""> Already have an account? </a>
+
+            </div>
+
+
+        </form>
 
 
 
 
 
-        </div>
+    </div>
 
 
 
-    </body>
+</body>
 
-    <br> <br>
+<br> <br>
 
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
