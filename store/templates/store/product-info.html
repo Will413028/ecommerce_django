@@ -109,7 +109,7 @@
         $.ajax({
 
             type: 'POST',
-            url: '',
+            url: '{% url "cart-add" %}',
             data: {
 
                 product_id: $('#add-button').val(),
