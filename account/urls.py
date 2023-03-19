@@ -18,4 +18,12 @@ urlpatterns = [
     path('dashboard', views.dashboard, name='dashboard'),
     path('profile-management', views.profile_management, name='profile-management'),
     path('delete-account', views.delete_account, name='delete-account'),
+    path('reset_password', auth_views.PasswordResetView.as_view(
+        template_name="account/password/password-reset.html"), name='reset_password'),
+    path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(
+        template_name="account/password/password-reset-sent.html"), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
+        template_name="account/password/password-reset-form.html"), name='password_reset_confirm'),
+    path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(
+        template_name="account/password/password-reset-complete.html"), name='password_reset_complete'),
 ]

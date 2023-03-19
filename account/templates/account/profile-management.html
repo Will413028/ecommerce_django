@@ -1,4 +1,3 @@
-
 {% include "store/base.html" %}
 
 {% load static %}
@@ -8,106 +7,90 @@
 
 {% block content %}
 
-    <style>
+<style>
+    body {
 
 
-        body{
+        background-color: gray;
 
-
-            background-color: gray;
-
-        }
-
-
-
-    </style>
+    }
+</style>
 
 
 
 
-    <body>
+<body>
 
-        <br>
+    <br>
 
-        <div class="container bg-white shadow-md p-5 form-layout">
+    <div class="container bg-white shadow-md p-5 form-layout">
 
-            <h3> <i class="fa fa-address-book" aria-hidden="true"></i> &nbsp; Profile management </h3>
+        <h3> <i class="fa fa-address-book" aria-hidden="true"></i> &nbsp; Profile management </h3>
 
-            <p> Manage your account effectively. </p>
+        <p> Manage your account effectively. </p>
 
-            <hr>
-            
-
-
-        </div>
-
-        <br>
-
-        <div class="container bg-white shadow-md p-5 form-layout">
-
-            <h4> Update your account </h4>
-
-            <p> Feel free to make changes to your account. </p>
-
-            <hr>
-
-            <br>
-
-            <form method="POST" autocomplete="off">
-
-                {% csrf_token %}
-
-                {{user_form.username|as_crispy_field}}
+        <hr>
 
 
-                <br> <br>
 
+    </div>
 
-                {{user_form.email|as_crispy_field}}
+    <br>
 
-                <br> <br>
+    <div class="container bg-white shadow-md p-5 form-layout">
 
-                
-                <button type="submit" class="btn btn-primary navbar-btn text-white"> &nbsp; Update your account </button>
+        <h4> Update your account </h4>
 
+        <p> Feel free to make changes to your account. </p>
 
-            </form>
-
-
-        </div>
+        <hr>
 
         <br>
 
+        <form method="POST" autocomplete="off">
 
-        <div class="container bg-white shadow-md p-5 form-layout">
+            {% csrf_token %}
 
-            <h4> Delete your account </h4>
-
-            <p> Proceed if you wish to delete your account.</p>
-
-            <hr>
-
-            <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'delete-account' %}"> Delete your account </a>
-
-        </div>
+            {{user_form.username|as_crispy_field}}
 
 
+            <br> <br>
 
-    </body>
 
-    <br> <br>
+            {{user_form.email|as_crispy_field}}
+
+            <br> <br>
+
+
+            <button type="submit" class="btn btn-primary navbar-btn text-white"> &nbsp; Update your account </button>
+
+
+        </form>
+
+
+    </div>
+
+    <br>
+
+
+    <div class="container bg-white shadow-md p-5 form-layout">
+
+        <h4> Delete your account </h4>
+
+        <p> Proceed if you wish to delete your account.</p>
+
+        <hr>
+
+        <a class="btn btn-primary navbar-btn text-white" type="button" href="{% url 'delete-account' %}"> Delete your
+            account </a>
+
+    </div>
+
+
+
+</body>
+
+<br> <br>
 
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
