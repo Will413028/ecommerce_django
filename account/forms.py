@@ -7,8 +7,6 @@ from django import forms
 from django.forms.widgets import PasswordInput, TextInput
 
 
-# Registration form
-
 class CreateUserForm(UserCreationForm):
 
     class Meta:
@@ -19,11 +17,7 @@ class CreateUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(CreateUserForm, self).__init__(*args, **kwargs)
 
-        # Mark email as required
-
         self.fields['email'].required = True
-
-    # Email validation
 
     def clean_email(self):
 
@@ -33,8 +27,6 @@ class CreateUserForm(UserCreationForm):
 
             raise forms.ValidationError('This email is invalid')
 
-        # len function updated ###
-
         if len(email) >= 350:
 
             raise forms.ValidationError("Your email is too long")
@@ -42,15 +34,11 @@ class CreateUserForm(UserCreationForm):
         return email
 
 
-# Login form
-
 class LoginForm(AuthenticationForm):
 
     username = forms.CharField(widget=TextInput())
     password = forms.CharField(widget=PasswordInput())
 
-
-# Update form
 
 class UpdateUserForm(forms.ModelForm):
 
@@ -66,11 +54,7 @@ class UpdateUserForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
 
-        # Mark email as required
-
         self.fields['email'].required = True
-
-    # Email validation
 
     def clean_email(self):
 
@@ -79,8 +63,6 @@ class UpdateUserForm(forms.ModelForm):
         if User.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
 
             raise forms.ValidationError('This email is invalid')
-
-        # len function updated ###
 
         if len(email) >= 350:
 
